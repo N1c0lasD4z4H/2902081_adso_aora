@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "aora_adso",
-    "slug": "aora_adso",
+    "name": "2902091_ADSO",
+    "slug": "2902091_ADSO",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "2902081_ADSO",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
