@@ -6,9 +6,9 @@ import { Link } from 'expo-router'
 export default function App(){
   return(
     <View className="flex-1 items-center justify-center bg-white">
-        <Text className="text-3xl">2902081_adso</Text>
+        <Text className="text-3xl font-pblack">2902081_adso</Text>
         <StatusBar style='auto'/>
-        <Link href="/profile" style={{color:'blue'}}>Go to Profile</Link>
+        <Link href="/profile" style={{color:'blue'}}>Go to home</Link>
     </View>
   )
 } 
