@@ -1,12 +1,39 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-const CustomButtom = () => {
+const CustomButton = ({ title = 'Continue with email', handlePress, containerStyles, textStyles, isLoading }) => {
   return (
-    <View>
-      <Text>CustomButtom</Text>
-    </View>
-  )
-}
+    <TouchableOpacity 
+      onPress={handlePress}
+      activeOpacity={0.7}
+      style={[styles.button, containerStyles]}
+      disabled={isLoading} 
+    >
+      {isLoading ? (
+        <ActivityIndicator size="small" color="#fff" />
+      ) : (
+        <Text style={[styles.buttonText, textStyles]}>
+          {title}
+        </Text>
+      )}
+    </TouchableOpacity>
+  );
+};
 
-export default CustomButtom
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#FF9001', 
+    borderRadius: 12,
+    minHeight: 62, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: 16, 
+  },
+  buttonText: {
+    color: '#161622', 
+    fontSize: 16, 
+    fontWeight: 'bold', 
+  },
+});
+
+export default CustomButton;

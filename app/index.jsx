@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { images } from '../constants';
 import CustomButton from '../components/CustomButtom';
+import { router } from 'expo-router';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
                 style={styles.cardImage}
                 resizeMode="contain"
               />
-              <View style={styles.textContainer}>
+              <View style={{ position: 'relative', marginTop: 5 }}>
                 <Text style={styles.headerText}>
                   Discover Endless{"\n"}
                   Possibilities with{" "}
@@ -32,8 +33,9 @@ export default function App() {
                 <Image
                   source={images.path}
                   style={styles.pathImage}
-                  resizeMode="contain"
+                  
                 />
+                </View>
                 <Text style={styles.descriptionText}>
                   Where Creativity Meets Innovation: Embark on a Journey of Limitless
                   Exploration with Aora
@@ -44,7 +46,7 @@ export default function App() {
                   handlePress={() => router.push("/sign-in")}
                   containerStyles={styles.button}
                 />
-              </View>
+              
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -83,26 +85,27 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 24,
-    color: 'white',
+    color: '#FFFFFF',
     fontWeight: 'bold',
     textAlign: 'center',
+    marginVertical: 5,
   },
   secondaryText: {
-    color: 'secondary-200',
+    color: '#FF9001',
   },
   pathImage: {
     width: 136,
     height: 15,
     position: 'absolute',
-    bottom: -8,
+    bottom: -2,
     right: -8,
   },
   descriptionText: {
     fontSize: 14,
-    fontFamily: 'pregular',
-    color: 'gray-100',
-    marginTop: 20,
+    color: '#B5B5B5',
     textAlign: 'center',
+    marginTop: 7,
+    
   },
   button: {
     width: '100%',
