@@ -7,6 +7,7 @@ import FormField from '../../components/FormField';
 import { images } from '../../constants'; 
 
 import CustomButton from '../../components/CustomButtom'; 
+import { getCurrentUser, signIn } from '../../lib/appwrite';
 
 
 const SignIn = () => {
@@ -15,9 +16,28 @@ const SignIn = () => {
     password: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const submit =() =>{
+  const submit = async () => {
+    if (!form.email || !form.password) {
+      Alert.alert('Error', 'Please fill in all the fields');
+      return; 
+    }
+    
+    setIsSubmitting(true);
+    try {
+       await signIn(form.email, form.password);
+       const result = await getCurrentUser(); 
+       setUser(result);
+       setIsLogged(true);
 
-  }
+       Alert.alert("Succes", "User signed in successfully");
+      // Set it to Global State...
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>

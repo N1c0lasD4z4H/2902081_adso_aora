@@ -5,9 +5,11 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { images } from '../constants';
 import CustomButton from '../components/CustomButtom';
-import { router } from 'expo-router';
-
+import { Redirect, router } from 'expo-router';
+import {useGlobalContext} from '../Context/GlobalProvider';
 export default function App() {
+  const{isLoading, isLoggedIn} = useGlobalContext();
+  if(!isLoading && isLoggedIn) return <Redirect href="/home"/>
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>

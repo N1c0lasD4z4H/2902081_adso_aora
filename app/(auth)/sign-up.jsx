@@ -1,24 +1,42 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet, ScrollView, Alert, Image } from 'react-native'; 
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '../../components/FormField'; 
-
 import { images } from '../../constants'; 
-
 import CustomButton from '../../components/CustomButtom'; 
-
+import{createUser} from '../../lib/appwrite';
 
 const SignUp = () => {
   const [form, setForm] = useState({
-    username:'',
-    email:'',
+    username: '',
+    email: '',
     password: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const submit =() =>{
+  });
 
-  }
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submit = async () => {
+    if (!form.username || !form.email || !form.password) {
+      Alert.alert('Error', 'Please fill in all the fields');
+      return; 
+    }
+    
+    setIsSubmitting(true);
+    try {
+      const result = await createUser(form.email, form.password, form.username); 
+      setSourceMapRange(result);
+      setIsLogged(true);
+
+      // Set it to Global State...
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
